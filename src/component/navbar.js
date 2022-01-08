@@ -16,8 +16,8 @@ export default function Navbar() {
   };
 
   const onLogout = () => {
+    localStorage.clear();
     router.push("/login");
-    setIsOpen(false);
   };
 
   const { activeItem } = state;
