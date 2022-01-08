@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Menu } from "semantic-ui-react";
 import { useHistory, useLocation } from "react-router";
+import { ModalConfirm } from ".";
 
 export default function Navbar() {
   const router = useHistory();
   const location = useLocation();
+
+  const [isOpen, setIsOpen] = useState(false);
   const [state, setState] = useState({ activeItem: location.pathname });
 
   const handleItemClick = (e, { name }) => {
@@ -12,8 +15,12 @@ export default function Navbar() {
     router.push(`${name === "home" ? "/" : `/${name}`}`);
   };
 
-  const { activeItem } = state;
+  const onLogout = () => {
+    router.push("/login");
+    setIsOpen(false);
+  };
 
+  const { activeItem } = state;
   return (
     <Menu secondary style={{ borderBottom: "1px solid gray", padding: "10px" }}>
       <Menu.Item
@@ -28,10 +35,14 @@ export default function Navbar() {
       />
 
       <Menu.Menu position="right">
-        <Menu.Item
-          name="logout"
-          active={activeItem === "logout"}
-          onClick={handleItemClick}
+        <ModalConfirm
+          title="Logout"
+          header="Logout?"
+          desc="Are you sure want to logout?"
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          onOpen={() => setIsOpen(true)}
+          onSubmit={() => onLogout()}
         />
       </Menu.Menu>
     </Menu>

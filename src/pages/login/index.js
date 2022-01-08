@@ -42,7 +42,7 @@ const Login = () => (
         </Segment>
       </Form>
       <Message>
-        New to us? <Link to="/">Register</Link>
+        New to us? <Link to="/register">Register</Link>
       </Message>
     </Grid.Column>
   </Grid>
