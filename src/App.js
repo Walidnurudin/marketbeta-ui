@@ -1,12 +1,14 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Login, Register } from "./pages";
+import { Login, Register, Home, Profle } from "./pages";
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Register} />
+        <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/profile" component={Profle} />
       </Switch>
     </BrowserRouter>
   );
