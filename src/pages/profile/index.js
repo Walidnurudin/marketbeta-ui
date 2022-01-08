@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Form, Input, Button } from "semantic-ui-react";
+import { Container, Grid, Form, Header, Button } from "semantic-ui-react";
 import { Navbar, ProfileComponent, CardItem } from "../../component";
 
 function Profle() {
@@ -8,6 +8,9 @@ function Profle() {
   return (
     <div>
       <Container>
+        <Header as="h1" color="teal" style={{ marginTop: "30px" }}>
+          Marketbeta
+        </Header>
         <Navbar />
         <ProfileComponent />
 

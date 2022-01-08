@@ -9,11 +9,12 @@ import {
   Segment,
 } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { ResponMessage } from "../../component";
 
 const Login = () => (
   <Grid
     textAlign="center"
-    style={{ height: "100vh", backgroundColor: "grey" }}
+    style={{ height: "100vh", backgroundColor: "lightgrey" }}
     verticalAlign="middle"
   >
     <Grid.Column style={{ maxWidth: 450 }}>
@@ -39,6 +40,8 @@ const Login = () => (
           <Button color="teal" fluid size="large">
             Login
           </Button>
+
+          <ResponMessage isSuccess={false} msg="Error" />
         </Segment>
       </Form>
       <Message>

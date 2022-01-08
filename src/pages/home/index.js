@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid } from "semantic-ui-react";
+import { Container, Grid, Header } from "semantic-ui-react";
 import { Navbar, CardItem } from "../../component";
 
 function Home() {
@@ -8,6 +8,9 @@ function Home() {
   return (
     <div>
       <Container>
+        <Header as="h1" color="teal" style={{ marginTop: "30px" }}>
+          Marketbeta
+        </Header>
         <Navbar />
         <h1 className="ui header">All product</h1>
         <Grid columns={4} container doubling stackable>

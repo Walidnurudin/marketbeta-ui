@@ -4,7 +4,6 @@ import {
   Form,
   Grid,
   Header,
-  Image,
   Message,
   Segment,
 } from "semantic-ui-react";
@@ -13,7 +12,7 @@ import { Link } from "react-router-dom";
 const Register = () => (
   <Grid
     textAlign="center"
-    style={{ height: "100vh", backgroundColor: "grey" }}
+    style={{ height: "100vh", backgroundColor: "lightgrey" }}
     verticalAlign="middle"
   >
     <Grid.Column style={{ maxWidth: 450 }}>
@@ -28,11 +27,13 @@ const Register = () => (
             iconPosition="left"
             placeholder="Full name"
           />
-          <Form.Input
+          <Form.Select
             fluid
-            icon="lock"
-            iconPosition="left"
             placeholder="Gender"
+            options={[
+              { key: "m", value: "Male", text: "Male" },
+              { key: "f", value: "Female", text: "Female" },
+            ]}
           />
           <Form.Input
             fluid
