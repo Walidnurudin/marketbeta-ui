@@ -97,6 +97,9 @@ const Register = () => {
       verticalAlign="middle"
     >
       <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as="h1" color="teal" textAlign="center">
+          Marketbeta
+        </Header>
         <Header as="h2" color="teal" textAlign="center">
           Create new account
         </Header>

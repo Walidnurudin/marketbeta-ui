@@ -19,6 +19,8 @@ function Profle() {
     msg: "",
     isLoading: false,
   });
+  const [isUpdate, setIsUpdate] = useState(false);
+  const [idUpdate, setIdUpdate] = useState("");
 
   const [data, setData] = useState({
     name: "",
@@ -32,6 +34,8 @@ function Profle() {
       price: "",
       desc: "",
     });
+
+    setIsUpdate(false);
   };
 
   const handleChange = (e) => {
@@ -49,6 +53,58 @@ function Profle() {
 
     axios
       .post("product", data)
+      .then((res) => {
+        setResponse({
+          isShow: true,
+          isSuccess: true,
+          msg: res.data.msg,
+          isLoading: false,
+        });
+
+        resetFrom();
+        dispatch(getDataUser());
+
+        setTimeout(() => {
+          setResponse({
+            ...response,
+            isShow: false,
+            isSuccess: false,
+            msg: "",
+          });
+        }, 3000);
+      })
+      .catch((err) => {
+        setResponse({
+          isShow: true,
+          isSuccess: false,
+          msg: err.response.data.msg,
+          isLoading: false,
+        });
+
+        setTimeout(() => {
+          setResponse({
+            ...response,
+            isShow: false,
+            isSuccess: false,
+            msg: "",
+          });
+        }, 3500);
+      });
+  };
+
+  const changeUpdate = (item) => {
+    setIdUpdate(item._id);
+    setData({
+      name: item.name,
+      price: item.price,
+      desc: item.desc,
+    });
+    setIsUpdate(true);
+  };
+
+  const handleUpdate = () => {
+    axios
+      .patch(`product/${idUpdate}`, data)
       .then((res) => {
         setResponse({
           isShow: true,
@@ -134,9 +190,15 @@ function Profle() {
             />
           </Form.Group>
           <Button onClick={resetFrom}>Reset</Button>
-          <Button onClick={handleSubmit} loading={response.isLoading}>
-            Create
-          </Button>
+          {isUpdate ? (
+            <Button onClick={handleUpdate} loading={response.isLoading}>
+              Update
+            </Button>
+          ) : (
+            <Button onClick={handleSubmit} loading={response.isLoading}>
+              Create
+            </Button>
+          )}
         </Form>
 
         {response.isShow && (
@@ -149,13 +211,14 @@ function Profle() {
         {user.data.productId.length > 0 ? (
           <Grid columns={4} container doubling stackable>
             {user.data.productId.map((item) => (
-              <Grid.Column key={item}>
+              <Grid.Column key={item._id}>
                 <CardItem
                   id={item._id}
                   isAdmin={true}
                   name={item.name}
                   desc={item.desc}
                   price={item.price}
+                  changeUpdate={() => changeUpdate(item)}
                 />
               </Grid.Column>
             ))}

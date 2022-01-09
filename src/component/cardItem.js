@@ -7,7 +7,16 @@ import axios from "../utils/axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getDataUser } from "../stores/actions/user";
 
-const CardItem = ({ name, username, email, desc, price, isAdmin, id }) => {
+const CardItem = ({
+  name,
+  username,
+  email,
+  desc,
+  price,
+  isAdmin,
+  id,
+  changeUpdate,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -46,7 +55,9 @@ const CardItem = ({ name, username, email, desc, price, isAdmin, id }) => {
           <h5>{formatRp(price)}</h5>
           {isAdmin && (
             <div className="ui two buttons" style={{ marginTop: "20px" }}>
-              <Button color="green">Update</Button>
+              <Button color="green" onClick={changeUpdate}>
+                Update
+              </Button>
               <ModalConfirm
                 title="Delete"
                 header="Delete?"
