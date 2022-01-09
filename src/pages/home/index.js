@@ -8,7 +8,7 @@ function Home() {
 
   const getAllProduct = () => {
     axios
-      .get(`${process.env.REACT_APP_API}product`)
+      .get(`product`)
       .then((res) => {
         setData(res.data.data);
       })

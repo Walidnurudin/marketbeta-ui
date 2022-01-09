@@ -39,8 +39,9 @@ const Login = () => {
       ...response,
       isLoading: true,
     });
+
     axios
-      .post(`${process.env.REACT_APP_API}user/login`, data)
+      .post(`user/login`, data)
       .then((res) => {
         localStorage.setItem("token", res.data.data.token);
         dispatch(getDataUser());

@@ -52,7 +52,7 @@ const Register = () => {
       isLoading: true,
     });
     axios
-      .post(`${process.env.REACT_APP_API}user/register`, data)
+      .post(`user/register`, data)
       .then((res) => {
         setResponse({
           isShow: true,

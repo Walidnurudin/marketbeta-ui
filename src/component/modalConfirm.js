@@ -12,6 +12,7 @@ function ModalConfirm({
 }) {
   return (
     <Modal
+      size="mini"
       open={isOpen}
       trigger={<Button color="red">{title}</Button>}
       onClose={onClose}
