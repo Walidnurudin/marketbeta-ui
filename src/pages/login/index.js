@@ -10,9 +10,12 @@ import {
 import { Link, useHistory } from "react-router-dom";
 import { ResponMessage } from "../../component";
 import axios from "../../utils/axios";
+import { useDispatch } from "react-redux";
+import { getDataUser } from "../../stores/actions/user";
 
 const Login = () => {
   const router = useHistory();
+  const dispatch = useDispatch();
   const [response, setResponse] = useState({
     isShow: false,
     isSuccess: false,
@@ -40,6 +43,7 @@ const Login = () => {
       .post(`${process.env.REACT_APP_API}user/login`, data)
       .then((res) => {
         localStorage.setItem("token", res.data.data.token);
+        dispatch(getDataUser());
 
         setResponse({
           isShow: true,

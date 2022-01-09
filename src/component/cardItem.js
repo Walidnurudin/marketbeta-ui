@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Card, Icon, Image, Button } from "semantic-ui-react";
 import { product } from "../assets/images";
 import { ModalConfirm } from ".";
+import { formatRp } from "../utils/formatRp";
 
-const CardItem = ({ isAdmin }) => {
+const CardItem = ({ name, username, email, desc, price, isAdmin }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const onDelete = () => {
@@ -14,21 +15,18 @@ const CardItem = ({ isAdmin }) => {
     <Card centered>
       <Image src={product} wrapped ui={false} />
       <Card.Content>
-        <Card.Header>Name Product</Card.Header>
+        <Card.Header>{name}</Card.Header>
         {!isAdmin && (
           <Card.Meta>
-            <span className="date">From username</span>
+            <span className="date">From {username || "-"}</span>
             <br />
-            <span className="date">email</span>
+            <span className="date">{email}</span>
           </Card.Meta>
         )}
-        <Card.Description>description</Card.Description>
+        <Card.Description>{desc}</Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <a>
-          <Icon name="user" />
-          Price
-        </a>
+        <h5>{formatRp(price)}</h5>
         {isAdmin && (
           <div className="ui two buttons" style={{ marginTop: "20px" }}>
             <Button color="green">Update</Button>
